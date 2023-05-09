@@ -109,4 +109,6 @@ func main() {
 		fmt.Println("3. Lire un fichier")
 		fmt.Println("4. Supprimer un fichier")
 		fmt.Println("5. Afficher les permissions d'un fichier")
-		fmt.Println("6. Se connecter à
+		fmt.Println("6. Se connecter à")
+	}
+}
