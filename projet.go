@@ -2,49 +2,30 @@ package main
 
 import (
 	"fmt"
-	// "log"
+	"log"
 	"os"
 )
 
-// func creerFichier() {
-// 	fmt.Println("Fonctionnalité : Créer un fichier")
-// 	// Ajoutez ici le code pour créer un fichier
-// }
+/*
+On utilise la fonction os.Create pour créer le fichier. En cas d'erreur lors de la création du fichier, 
+une erreur sera affichée. Sinon, un message de confirmation sera affiché. La fonction defer est utilisée
+pour s'assurer que le fichier est fermé après son utilisation. Dans cet exemple, la fonction creerFichier 
+est appelée directement depuis la fonction main.
+*/
+func creerFichier() {
+	var nomFichier string
+	fmt.Print("Entrez le nom du fichier à créer : ")
+	fmt.Scanln(&nomFichier)
 
-// func copierFichier() {
-// 	fmt.Println("Fonctionnalité : Copier un fichier")
-// 	// Ajoutez ici le code pour copier un fichier
-// }
+	fichier, err := os.Create(nomFichier)
+	if err != nil {
+		log.Fatalf("Erreur : Impossible de créer le fichier. %v", err)
+	}
+	defer fichier.Close()
 
-// func lireFichier() {
-// 	fmt.Println("Fonctionnalité : Lire un fichier")
-// 	// Ajoutez ici le code pour lire un fichier
-// }
+	fmt.Println("Le fichier", nomFichier, "a été créé.")
+}
 
-// func supprimerFichier() {
-// 	fmt.Println("Fonctionnalité : Supprimer un fichier")
-// 	// Ajoutez ici le code pour supprimer un fichier
-// }
-
-// func afficherPermissions() {
-// 	fmt.Println("Fonctionnalité : Afficher les permissions d'un fichier")
-// 	// Ajoutez ici le code pour afficher les permissions d'un fichier
-// }
-
-// func seConnecterFTP() {
-// 	fmt.Println("Fonctionnalité : Se connecter à un serveur FTP")
-// 	// Ajoutez ici le code pour se connecter à un serveur FTP
-// }
-
-// func seConnecterHTTP() {
-// 	fmt.Println("Fonctionnalité : Se connecter à un serveur HTTP")
-// 	// Ajoutez ici le code pour se connecter à un serveur HTTP
-// }
-
-// func seConnecterSSH() {
-// 	fmt.Println("Fonctionnalité : Se connecter à un serveur SSH")
-// 	// Ajoutez ici le code pour se connecter à un serveur SSH
-// }
 
 func quitterApplication() {
 	fmt.Println("L'application a été quittée.")
@@ -74,8 +55,7 @@ func lireChoix() int {
 func executerOption(choix int) {
 	switch choix {
 	case 1:
-		fmt.Printf("Creer un fichier\n")
-		// creerFichier()
+		creerFichier()
 	case 2: fmt.Printf("Copier un fichier\n")
 		// copierFichier()
 	case 3: fmt.Printf("lire un fichier\n")
@@ -104,4 +84,6 @@ func main() {
 		choix := lireChoix()
 		executerOption(choix)
 	}
+
+	
 }
