@@ -1,114 +1,107 @@
-//Mini projet en go
 package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
+	// "log"
 	"os"
 )
 
-func creerFichier() {
-	var nomFichier string
-	fmt.Print("Entrez le nom du fichier à créer : ")
-	fmt.Scanln(&nomFichier)
+// func creerFichier() {
+// 	fmt.Println("Fonctionnalité : Créer un fichier")
+// 	// Ajoutez ici le code pour créer un fichier
+// }
 
-	file, err := os.Create(nomFichier)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible de créer le fichier. %v", err)
-	}
-	defer file.Close()
+// func copierFichier() {
+// 	fmt.Println("Fonctionnalité : Copier un fichier")
+// 	// Ajoutez ici le code pour copier un fichier
+// }
 
-	fmt.Println("Le fichier", nomFichier, "a été créé.")
-}
+// func lireFichier() {
+// 	fmt.Println("Fonctionnalité : Lire un fichier")
+// 	// Ajoutez ici le code pour lire un fichier
+// }
 
-func copierFichier() {
-	var nomFichierSource, nomFichierDestination string
-	fmt.Print("Entrez le nom du fichier source : ")
-	fmt.Scanln(&nomFichierSource)
-	fmt.Print("Entrez le nom du fichier de destination : ")
-	fmt.Scanln(&nomFichierDestination)
+// func supprimerFichier() {
+// 	fmt.Println("Fonctionnalité : Supprimer un fichier")
+// 	// Ajoutez ici le code pour supprimer un fichier
+// }
 
-	content, err := ioutil.ReadFile(nomFichierSource)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible de lire le fichier source. %v", err)
-	}
+// func afficherPermissions() {
+// 	fmt.Println("Fonctionnalité : Afficher les permissions d'un fichier")
+// 	// Ajoutez ici le code pour afficher les permissions d'un fichier
+// }
 
-	err = ioutil.WriteFile(nomFichierDestination, content, 0644)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible de copier le fichier. %v", err)
-	}
+// func seConnecterFTP() {
+// 	fmt.Println("Fonctionnalité : Se connecter à un serveur FTP")
+// 	// Ajoutez ici le code pour se connecter à un serveur FTP
+// }
 
-	fmt.Println("Le fichier", nomFichierSource, "a été copié vers", nomFichierDestination)
-}
+// func seConnecterHTTP() {
+// 	fmt.Println("Fonctionnalité : Se connecter à un serveur HTTP")
+// 	// Ajoutez ici le code pour se connecter à un serveur HTTP
+// }
 
-func lireFichier() {
-	var nomFichier string
-	fmt.Print("Entrez le nom du fichier à lire : ")
-	fmt.Scanln(&nomFichier)
-
-	content, err := ioutil.ReadFile(nomFichier)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible de lire le fichier. %v", err)
-	}
-
-	fmt.Printf("Contenu du fichier %s :\n%s", nomFichier, content)
-}
-
-func supprimerFichier() {
-	var nomFichier string
-	fmt.Print("Entrez le nom du fichier à supprimer : ")
-	fmt.Scanln(&nomFichier)
-
-	err := os.Remove(nomFichier)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible de supprimer le fichier. %v", err)
-	}
-
-	fmt.Println("Le fichier", nomFichier, "a été supprimé.")
-}
-
-func afficherPermissions() {
-	var nomFichier string
-	fmt.Print("Entrez le nom du fichier : ")
-	fmt.Scanln(&nomFichier)
-
-	fileInfo, err := os.Stat(nomFichier)
-	if err != nil {
-		log.Fatalf("Erreur : Impossible d'obtenir les permissions du fichier. %v", err)
-	}
-
-	fmt.Println("Permissions du fichier", nomFichier, ":", fileInfo.Mode().Perm())
-}
-
-func seConnecterFTP() {
-	// Code pour se connecter à un serveur FTP
-	fmt.Println("Connexion au serveur FTP...")
-}
-
-func seConnecterHTTP() {
-	// Code pour se connecter à un serveur HTTP
-	fmt.Println("Connexion au serveur HTTP...")
-}
-
-func seConnecterSSH() {
-	// Code pour se connecter à un serveur SSH
-	fmt.Println("Connexion au serveur SSH...")
-}
+// func seConnecterSSH() {
+// 	fmt.Println("Fonctionnalité : Se connecter à un serveur SSH")
+// 	// Ajoutez ici le code pour se connecter à un serveur SSH
+// }
 
 func quitterApplication() {
 	fmt.Println("L'application a été quittée.")
 	os.Exit(0)
 }
 
+func afficherMenu() {
+	fmt.Println("\nMenu:")
+	fmt.Println("1. Créer un fichier")
+	fmt.Println("2. Copier un fichier")
+	fmt.Println("3. Lire un fichier")
+	fmt.Println("4. Supprimer un fichier")
+	fmt.Println("5. Afficher les permissions d'un fichier")
+	fmt.Println("6. Se connecter à un serveur FTP")
+	fmt.Println("7. Se connecter à un serveur HTTP")
+	fmt.Println("8. Se connecter à un serveur SSH")
+	fmt.Println("9. Quitter l'application")
+}
+
+func lireChoix() int {
+	var choix int
+	fmt.Print("\n Sélectionnez une option : \n")
+	fmt.Scanln(&choix)
+	return choix
+}
+
+func executerOption(choix int) {
+	switch choix {
+	case 1:
+		fmt.Printf("Creer un fichier\n")
+		// creerFichier()
+	case 2: fmt.Printf("Copier un fichier\n")
+		// copierFichier()
+	case 3: fmt.Printf("lire un fichier\n")
+		// lireFichier()
+	case 4: fmt.Printf("Supprimer un fichier\n")
+		// supprimerFichier()
+	case 5: fmt.Printf("Afficher permission\n")
+		// afficherPermissions()
+	case 6: fmt.Printf("Se connecter FTP\n")
+		// seConnecterFTP()
+	case 7: fmt.Printf("Se connecter HTTP\n")
+		// seConnecterHTTP()
+	case 8: fmt.Printf("Se connecter SSH\n")
+		// seConnecterSSH()
+	case 9:
+		// quitterApplication()
+	default:
+		fmt.Println("Option invalide. Veuillez sélectionner une option valide.")
+	}
+}
+
 func main() {
+	fmt.Printf("-------------------------------------------Afficher-------------------------------------\n")
 	for {
-		fmt.Println("\nMenu:")
-		fmt.Println("1. Créer un fichier")
-		fmt.Println("2. Copier un fichier")
-		fmt.Println("3. Lire un fichier")
-		fmt.Println("4. Supprimer un fichier")
-		fmt.Println("5. Afficher les permissions d'un fichier")
-		fmt.Println("6. Se connecter à")
+		afficherMenu()
+		choix := lireChoix()
+		executerOption(choix)
 	}
 }
